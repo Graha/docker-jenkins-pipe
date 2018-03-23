@@ -8,13 +8,18 @@ node ('xubun') {
         version = readFile ("${env.WORKSPACE}/version.txt").trim()
     }
 
+    stage('Prepare build environment') {
+        /* ideal place for placing prepare like UI builds or configs */
+        sh 'pwd'
+        sh 'ls'
+    }
+    
     stage('Building Docker image') {
         app = docker.build("graha/flaskpy")
     }
 
     stage('Quality Check') {
-        /* Ideally, we would run a test framework against our image.
-         * For this example, we're using a Volkswagen-type approach ;-) */
+        /* Ideally, we would run a test framework against our image.*/
 
         app.inside {
             sh 'echo "Tests passed"'
