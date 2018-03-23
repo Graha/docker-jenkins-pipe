@@ -5,7 +5,7 @@ node ('xubun') {
     stage('Cloning repository') {
         checkout scm
         env.WORKSPACE = pwd()
-        version = readFile "${env.WORKSPACE}/version.txt"
+        version = readFile ("${env.WORKSPACE}/version.txt").trim()
     }
 
     stage('Building Docker image') {
