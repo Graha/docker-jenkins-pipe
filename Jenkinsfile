@@ -1,8 +1,11 @@
 node ('xubun') {
     def app
+    def version
 
     stage('Cloning repository') {
         checkout scm
+        env.WORKSPACE = pwd()
+        version = readFile "${env.WORKSPACE}/version.txt"
     }
 
     stage('Building Docker image') {
@@ -24,7 +27,7 @@ node ('xubun') {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            app.push("${env.BUILD_NUMBER}")
+            app.push(version+"${env.BUILD_NUMBER}")
             app.push("latest")
         }
     }
