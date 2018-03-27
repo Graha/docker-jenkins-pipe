@@ -1,4 +1,4 @@
-node ('xubun') {
+node ('ubuntu-slave') {
     def app
     def version
 
