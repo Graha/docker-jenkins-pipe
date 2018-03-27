@@ -40,8 +40,8 @@ node ('xubun') {
     stage('Deployment Approval') {
         /* Ideally, we would run a test framework against our image.*/
         input "Confirm the deployment?"
-        docker.image('graha/flaskpy:latest').withRun('-p 5000:5000') {
-             sh 'echo "Deployed"'
+        app.inside {
+            sh 'echo "Deployment Approved"'
         }
     }
     
