@@ -45,10 +45,11 @@ node ('xubun') {
         }
     }
     
-    stage('Deployment') {
+    stage('Deployment Validation') {
         /* Ideally, we would run a test framework against our image.*/
         docker.image('graha/flaskpy:latest').withRun('-p 5000:5000') {
              sh 'echo "Deployed"'
+             sh 'curl localhost:5000'
         }
     }
 }
