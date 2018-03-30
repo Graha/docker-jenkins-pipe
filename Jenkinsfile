@@ -30,10 +30,11 @@ node ('ubuntu-slave') {
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+       resp = docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
             app.push("${version}_${env.BUILD_NUMBER}")
             app.push("latest")
         }
+        echo "${resp}"
     }
     
     stage('Deployment Approval') {
