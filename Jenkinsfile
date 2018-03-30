@@ -11,6 +11,11 @@ node ('ubuntu-slave') {
 
     stage('Prepare build environment') {
         /* ideal place for placing prepare like UI builds or configs */
+        commits = sh(
+            script: "git log --oneline -n 10",
+            returnStdout: true
+        ).split('\n')
+        sh 'echo "${commits}"'
         notifyStarted()
         sh 'pwd'
         sh 'ls'
