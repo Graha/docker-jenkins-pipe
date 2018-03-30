@@ -1,7 +1,8 @@
 node ('ubuntu-slave') {
     def app
     def version
-
+    def image_id
+    
     stage('Cloning repository') {
         checkout scm
         env.WORKSPACE = pwd()
@@ -16,13 +17,13 @@ node ('ubuntu-slave') {
     
     stage('Building Docker image') {
         app = docker.build("graha/flaskpy")
-        echo "Built ${app.id}"
+        image_id = sh 'docker images -q ${app.id}'
+        echo "Built Image ${app.id} -> ${image_id}"
     }
 
     stage('Quality Check') {
         /* Ideally, we would run a test framework against our image.*/
         resp = input "Confirm the quality?"
-        echo "${resp}"
     }
 
     stage('Push Docker image') {
@@ -34,7 +35,6 @@ node ('ubuntu-slave') {
             app.push("${version}_${env.BUILD_NUMBER}")
             app.push("latest")
         }
-        echo "${resp}"
     }
     
     stage('Deployment Approval') {
