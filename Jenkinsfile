@@ -17,7 +17,7 @@ node ('ubuntu-slave') {
     
     stage('Building Docker image') {
         app = docker.build("graha/flaskpy")
-        image_id = sh '''docker images -q "${app.id}"'''
+        image_id = sh "docker images -q ${app.id}"
         echo "Built Image ${app.id} -> ${image_id}"
     }
 
