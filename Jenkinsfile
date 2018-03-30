@@ -16,7 +16,7 @@ node ('ubuntu-slave') {
     
     stage('Building Docker image') {
         app = docker.build("graha/flaskpy")
-        echo "Built ${app.parsedId}"
+        echo "Built ${app.parsedId.userAndRepo}:${app.parsedId.tag}"
     }
 
     stage('Quality Check') {
