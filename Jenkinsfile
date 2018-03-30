@@ -21,10 +21,8 @@ node ('ubuntu-slave') {
 
     stage('Quality Check') {
         /* Ideally, we would run a test framework against our image.*/
-        input "Confirm the quality?"
-        app.inside {
-            sh 'echo "Tests passed"'
-        }
+        resp = input "Confirm the quality?"
+        echo "${resp}"
     }
 
     stage('Push Docker image') {
