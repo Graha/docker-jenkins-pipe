@@ -62,14 +62,7 @@ node ('ubuntu-slave') {
 
 
 def notifyStarted() {
-  /*
-  slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
- 
-  hipchatSend (color: 'YELLOW', notify: true,
-      message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
-    )
-   */
-  // send to email
+  //slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
   emailext (
       subject: "STARTED: CC Build '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
       body: """<p>STARTED: CC Build '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
@@ -80,13 +73,7 @@ def notifyStarted() {
 }
 
 def notifySuccessful() {
-  /*
-  slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
- 
-  hipchatSend (color: 'GREEN', notify: true,
-      message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
-    )
-  */
+  //slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
   emailext (
       subject: "SUCCESSFUL: CC Build '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
       body: """<p>SUCCESSFUL: CC Build '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
@@ -97,13 +84,7 @@ def notifySuccessful() {
 }
 
 def notifyFailed() {
-  /*
-  slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
- 
-  hipchatSend (color: 'RED', notify: true,
-      message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
-    )
-  */
+  //slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
   emailext (
       subject: "FAILED: CC Build '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
       body: """<p>FAILED: CC Build '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
