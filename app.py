@@ -1,13 +1,6 @@
 from flask import Flask
 app = Flask(__name__)
 
-
-class MyClass(object):
-    def __init__(self):
-        self.message = 'Hello'
-        return self  # Noncompliant
-    
-
 @app.route('/')
 def get_home():
     return 'I m in RL'
